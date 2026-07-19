@@ -54,6 +54,8 @@ def extract_headers_by_size(doc, size_tolerance=1.5):
                 for span in line.get("spans", []):
                     text = span["text"].strip()
                     size = span["size"]
+                    if "Nimbus" not in span["font"]:
+                        continue
 
                     if text and size >= header_threshold:
                         headers.append(text)
@@ -63,16 +65,18 @@ def extract_headers_by_size(doc, size_tolerance=1.5):
                         if current_header not in contents:
                             contents[current_header] = []
                             # txt = ""
-
+                        if txt:
+                            if txt[-1] != " " and span["text"][0] != " ":
+                                txt += " "
                         txt += span["text"]
 
-            if current_header and current_header in contents:
+            if current_header and current_header in contents and txt:
                 contents[current_header].append(txt)  # += "\n\n"
 
     # This section fixes the issue of dashes being used to extent long words onto the next line
     for header in contents:
 
-        pattern = r"([a-z])-([a-z])"
+        pattern = r"([a-z])- ([a-z])"
 
         for header in contents:
             for i, paragraph in enumerate(contents[header]):
