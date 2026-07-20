@@ -174,7 +174,8 @@ def check_sections_for_contradictions(sections):
 
                 if result == "Contradiction":
                     print(
-                        "REFERENCE:"
+                        "REFERENCE: "
+                        + section
                         + ref_sentence.text
                         + "\n\n CONTRADICTS?\n\n "
                         + "LLM: "
