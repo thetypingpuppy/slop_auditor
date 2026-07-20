@@ -32,15 +32,22 @@ REFERENCE: MPC is an effective solution to the workspace and cueing problem.
 
 In this particular case both these statements are true. In the proposed method, the MPC is used only for a subset of its functionality, so it remains idle a lot of the time. Unlike an LLM, the contradiction detection method used can not consider the context of the whole article.
 
-Indeed, the summary from the LLM is pretty decent, reflecting well on Gemini's capabilities.:
-
+Indeed, the summary from the LLM is pretty decent, *reflecting well on Gemini's capabilities*:
+```
 This text outlines a proposed **hybrid motion cueing philosophy** for simulators, designed to combine the practical simplicity of **Classical Washout Filters (CWF)** with the robust workspace-constraint handling of **Model Predictive Control (MPC)**.
 
 ### The Core Problem
-Current industry-standard CWFs suffer from poor workspace management—relying on "clipping" which introduces motion discontinuities or complex, degradation-prone soft-limiting. Conversely, full-scale MPC approaches are mathematically intensive, simulator-specific, and difficult for industry practitioners to tune.\n\n### The Proposed Solution: "MPC-as-a-Filter"\nThe authors propose a modular architecture that separates the **workspace limiter** from the simulator’s **kinematics**.
-### World-Space Limiting: Limiting is performed on driver states (position, velocity, acceleration) in an inertial world coordinate system. This makes the algorithm universal, allowing a single limiter to be applied to any simulator regardless of its physical degrees of freedom.
+Current industry-standard CWFs suffer from poor workspace management—relying on "clipping" which introduces motion discontinuities or complex, degradation-prone soft-limiting.
+Conversely, full-scale MPC approaches are mathematically intensive, simulator-specific, and difficult for industry practitioners to tune.
 
-### Mapping via Look-up Tables (LUTs):** Because analytical models for complex simulator workspaces are often intractable, the authors propose using LUTs or Piecewise Affine Functions (PWAs) to map allowable motion limits based on the current configuration. These can be generated mathematically or through empirical testing.   
+### The Proposed Solution:
+"MPC-as-a-Filter" - the authors propose a modular architecture that separates the **workspace limiter** from the simulator’s **kinematics**.
+
+### World-Space Limiting
+Limiting is performed on driver states (position, velocity, acceleration) in an inertial world coordinate system. This makes the algorithm universal, allowing a single limiter to be applied to any simulator regardless of its physical degrees of freedom.
+
+### Mapping via Look-up Tables (LUTs)
+Because analytical models for complex simulator workspaces are often intractable, the authors propose using LUTs or Piecewise Affine Functions (PWAs) to map allowable motion limits based on the current configuration. These can be generated mathematically or through empirical testing.   
 
 ### The MPC Limiter
 A lightweight, simplified MPC is appended to the standard CWF output.
@@ -60,3 +67,4 @@ A Proportional-Derivative (PD) controller acts as a closed-loop system to gently
 **Unified Workflow:** Simulator facilities managing diverse hardware can use a single, standardized limiting strategy.
 
 **Performance:** It prioritizes "consistency"—a trait highly valued by elite drivers—by ensuring the simulator behaves like a standard CWF during normal driving, only intervening when physical constraints are truly at risk.'
+```
