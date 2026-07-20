@@ -33,7 +33,9 @@ REFERENCE: MPC is an effective solution to the workspace and cueing problem.
 In this particular case both these statements are true. In the proposed method, the MPC is used only for a subset of its functionality, so it remains idle a lot of the time. Unlike an LLM, the contradiction detection method used can not consider the context of the whole article.
 
 Indeed, the summary from the LLM is pretty decent, *reflecting well on Gemini's capabilities*:
-```
+
+--------------------------------------------------------------------------------
+
 This text outlines a proposed **hybrid motion cueing philosophy** for simulators, designed to combine the practical simplicity of **Classical Washout Filters (CWF)** with the robust workspace-constraint handling of **Model Predictive Control (MPC)**.
 
 ### The Core Problem
@@ -67,4 +69,4 @@ A Proportional-Derivative (PD) controller acts as a closed-loop system to gently
 **Unified Workflow:** Simulator facilities managing diverse hardware can use a single, standardized limiting strategy.
 
 **Performance:** It prioritizes "consistency"—a trait highly valued by elite drivers—by ensuring the simulator behaves like a standard CWF during normal driving, only intervening when physical constraints are truly at risk.'
-```
+
